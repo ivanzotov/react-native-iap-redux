@@ -13,6 +13,8 @@
     "react-native-iap": "^2.4.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.0",
     "prettier": "^1.16.4"
   }
 }
