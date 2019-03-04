@@ -1,32 +1,38 @@
 import { Alert } from 'react-native';
 import * as RNIap from 'react-native-iap';
-import DEFAULT_CONFIG from './config'
 
-export default (config = DEFAULT_CONFIG) => class Purchase {
-  static deserialize = raw => new Purchase(raw);
+export default ({ getStore, getConfig, getState, persist }) =>
+  class Purchase {
+    static deserialize = function(raw) {
+      return new this(raw);
+    };
 
-  constructor(sku) {
-    this.sku = sku;
-  }
-
-  serialize = () => this.sku;
-
-  getInfo = async () => {
-    const products = await RNIap.getProducts([this.sku]);
-    return products[0];
-  };
-
-  buy = async () => {
-    const { store, redux_action_type_buy } = config;
-    await RNIap.initConnection();
-
-    try {
-      await RNIap.buyProduct(this.sku);
-      store.dispatch({ type: redux_action_type_buy, sku: this.sku });
-    } catch (err) {
-      Alert.alert(`Ошибка: ${err.code}`, err.message);
+    constructor(sku) {
+      this.sku = sku;
     }
 
-    await RNIap.endConnection();
+    serialize = () => this.sku;
+
+    getInfo = async () => {
+      const products = await RNIap.getProducts([this.sku]);
+      return products[0];
+    };
+
+    isAvailable = () => getState().isAvailable(this);
+
+    buy = async () => {
+      const store = getStore();
+      const { redux_action_type_buy } = getConfig();
+      await RNIap.initConnection();
+
+      try {
+        await RNIap.buyProduct(this.sku);
+        store.dispatch({ type: redux_action_type_buy, payload: this });
+        persist();
+      } catch (err) {
+        Alert.alert(err.code, err.message);
+      }
+
+      await RNIap.endConnection();
+    };
   };
-}

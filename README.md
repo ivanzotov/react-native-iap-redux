@@ -25,26 +25,35 @@ import IapRedux from './iapRedux'
 const rootReducer = combineReducers({
   [IapRedux.reducerKey]: IapRedux.reducer,
 });
+```
 
- IapRedux.reducer
+### Define purchases somewhere
+
+```js
+import IapRedux from './iapRedux'
+
+export default {
+  purchase1: new IapRedux.Purchase('com.purchase.example')
+}
 ```
 
 ### Preload from AsyncStorage
 
 ```js
 import IapRedux from './iapRedux'
+import store from './store';
 
-IapRedux.preload()
+await IapRedux.init(store)
 ```
 
 ### Buy
 
 ```js
-onPress(purchase) {
+async onPress(purchase) {
   if (!purchase.isAvailable()) {
-    const info = purchase.getInfo()
+    const info = await purchase.getInfo()
     Alert.alert(
-      'Buy',
+      info.title,
       info.description,
       [
         {

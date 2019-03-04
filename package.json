@@ -9,7 +9,7 @@
   "scripts": {
     "format": "prettier --trailing-comma es5 --single-quote --write 'src/*.js' 'index.*.js'"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react-native-iap": "^2.4.1"
   },
   "devDependencies": {
