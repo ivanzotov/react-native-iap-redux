@@ -1,0 +1,12 @@
+{
+  "name": "react-native-iap-extended",
+  "version": "0.1.0",
+  "description": "Wrapper over react-native-iap",
+  "main": "index.js",
+  "author": "Ivan Zotov",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "react-native-iap": "^2.4.1"
+  }
+}
