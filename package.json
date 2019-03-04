@@ -6,7 +6,13 @@
   "author": "Ivan Zotov",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "format": "prettier --trailing-comma es5 --single-quote --write 'src/*.js' 'index.*.js'"
+  },
   "dependencies": {
     "react-native-iap": "^2.4.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.16.4"
   }
 }

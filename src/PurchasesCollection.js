@@ -1,20 +1,20 @@
-import Purchase from './index'
+import Purchase from './index';
 
 export class PurchasesCollection {
-  static deserialize = (raw) => {
-    const purchases = raw.map(it => Purchase.deserialize(it))
-    return new PurchasesCollection(purchases)
-  }
+  static deserialize = raw => {
+    const purchases = raw.map(it => Purchase.deserialize(it));
+    return new PurchasesCollection(purchases);
+  };
 
   constructor(purchase) {
-    this.__purchases = purchases
+    this.__purchases = purchases;
   }
 
   getPurchases() {
-    return this.__purchases
+    return this.__purchases;
   }
 
   serialize = () => {
-    return this.getPurchases().map(it => it.serialize())
-  }
+    return this.getPurchases().map(it => it.serialize());
+  };
 }

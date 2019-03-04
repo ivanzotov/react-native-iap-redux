@@ -40,6 +40,10 @@ has-flag@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
 
+prettier@^1.16.4:
+  version "1.16.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.16.4.tgz#73e37e73e018ad2db9c76742e2647e21790c9717"
+
 react-native-iap@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/react-native-iap/-/react-native-iap-2.4.1.tgz#aa0e712a6ad4d1da2ca52bd7f6194ec1e7e9eaab"

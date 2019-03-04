@@ -6,8 +6,8 @@ export class Purchase {
     async_storage_key: 'purchases',
     redux_reducer_key: 'purchases',
     redux_action_type_load: 'LOAD_PURCHASES',
-    redux_action_type_buy: 'BUY_PURCHASE'
-  }
+    redux_action_type_buy: 'BUY_PURCHASE',
+  };
 
   static reducer = (state = [], action) => {
     switch (action.type) {
@@ -18,21 +18,19 @@ export class Purchase {
       default:
         return state;
     }
-  }
+  };
 
-  static loadFromAsyncStorageToReduxStore = async (reduxStore) => {
-    const json = await AsyncStorage.getItem(Purchase.CONFIG.async_storage_key)
-    const purchases = JSON.parse(json)
+  static loadFromAsyncStorageToReduxStore = async reduxStore => {
+    const json = await AsyncStorage.getItem(Purchase.CONFIG.async_storage_key);
+    const purchases = JSON.parse(json);
 
     reduxStore.dispatch({
       type: Product.CONFIG.redux_action_type_load,
       payload: ProductCollection.deserialize(products || []),
-    })
+    });
   };
 
-  static deserialize = raw => {
-    return new Product(raw)
-  }
+  static deserialize = raw => new Product(raw);
 
   static restoreProducts = async () => {
     await RNIap.initConnection();
@@ -47,9 +45,9 @@ export class Purchase {
         payload: collection,
       });
 
-      const raw = collection.serialize()
-      const json = JSON.stringify(raw)
-      await AsyncStorage.setItem(Product.ASYNC_STORE_KEY, json)
+      const raw = collection.serialize();
+      const json = JSON.stringify(raw);
+      await AsyncStorage.setItem(Product.ASYNC_STORE_KEY, json);
     } catch (err) {
       Alert.alert(`Ошибка: ${err.code}`, err.message);
     }
@@ -61,14 +59,17 @@ export class Purchase {
     this.sku = sku;
   }
 
-  serialize = () => this.sku
+  serialize = () => this.sku;
 
   buy = async () => {
     await RNIap.initConnection();
 
     try {
       await RNIap.buyProduct(this.sku);
-      store.dispatch({ type: Purchase.CONFIG.redux_action_type_buy, sku: this.sku });
+      store.dispatch({
+        type: Purchase.CONFIG.redux_action_type_buy,
+        sku: this.sku,
+      });
     } catch (err) {
       Alert.alert(`Ошибка: ${err.code}`, err.message);
     }
@@ -77,7 +78,8 @@ export class Purchase {
   };
 
   isAvailable = () =>
-    store.getState()[Purchase.CONFIG.redux_reducer_key].indexOf(this.sku) !== -1;
+    store.getState()[Purchase.CONFIG.redux_reducer_key].indexOf(this.sku) !==
+    -1;
 
   getInfo = async () => {
     const products = await RNIap.getProducts([this.sku]);
