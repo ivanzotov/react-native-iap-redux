@@ -1,5 +1,5 @@
 {
-  "name": "react-native-iap-extended",
+  "name": "react-native-iap-redux",
   "version": "0.1.0",
   "description": "Wrapper over react-native-iap",
   "main": "index.js",
