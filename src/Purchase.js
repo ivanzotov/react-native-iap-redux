@@ -1,4 +1,3 @@
-import { Alert } from 'react-native';
 import * as RNIap from 'react-native-iap';
 
 export default ({ getStore, getConfig, getState, persist }) =>
@@ -30,9 +29,9 @@ export default ({ getStore, getConfig, getState, persist }) =>
         store.dispatch({ type: redux_action_type_buy, payload: this });
         persist();
       } catch (err) {
-        Alert.alert(err.code, err.message);
+        throw err
+      } finally {
+        await RNIap.endConnection();
       }
-
-      await RNIap.endConnection();
     };
   };
