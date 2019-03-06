@@ -75,7 +75,7 @@ export default class PurchasesRedux {
 
       this.persist();
     } catch (err) {
-      throw err
+      throw err;
     } finally {
       await RNIap.endConnection();
     }

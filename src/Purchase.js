@@ -14,7 +14,7 @@ export default ({ getStore, getConfig, getState, persist }) =>
 
     getInfo = async () => {
       const products = await RNIap.getProducts([this.sku]);
-      return products[0];
+      return products.find(it => it.productId === this.sku);
     };
 
     isAvailable = () => getState().isAvailable(this);
@@ -29,7 +29,7 @@ export default ({ getStore, getConfig, getState, persist }) =>
         store.dispatch({ type: redux_action_type_buy, payload: this });
         persist();
       } catch (err) {
-        throw err
+        throw err;
       } finally {
         await RNIap.endConnection();
       }
