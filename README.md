@@ -33,7 +33,7 @@ const rootReducer = combineReducers({
 import IapRedux from './iapRedux'
 
 export default {
-  purchase1: new IapRedux.Purchase('com.purchase.example')
+  purchase1: new IapRedux.Purchase({ sku: 'com.purchase.example' })
 }
 ```
 

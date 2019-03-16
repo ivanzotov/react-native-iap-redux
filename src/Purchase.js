@@ -6,11 +6,11 @@ export default ({ getStore, getConfig, getState, persist }) =>
       return new this(raw);
     };
 
-    constructor(sku) {
+    constructor({ sku }) {
       this.sku = sku;
     }
 
-    serialize = () => this.sku;
+    serialize = () => ({ sku: this.sku });
 
     getInfo = async () => {
       const products = await RNIap.getProducts([this.sku]);
