@@ -64,7 +64,7 @@ export default class PurchasesRedux {
     try {
       const availablePurchases = await RNIap.getAvailablePurchases();
       const purchases = availablePurchases.map(
-        it => new this.Purchase(it.productId)
+        it => new this.Purchase({ sku: it.productId })
       );
       const collection = new this.PurchasesCollection(purchases);
 
