@@ -1,6 +1,6 @@
 {
   "name": "react-native-iap-redux",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Wrapper over react-native-iap",
   "main": "index.js",
   "author": "Ivan Zotov",
@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "react-native-iap": "^2.4.1"
+  },
+  "peerDependencies": {
+    "@react-native-community/async-storage": "*"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

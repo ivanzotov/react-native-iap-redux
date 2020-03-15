@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import * as RNIap from 'react-native-iap';
 import Purchase from './Purchase';
 import PurchasesCollection from './PurchasesCollection';
