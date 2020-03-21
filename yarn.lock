@@ -213,11 +213,6 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dooboolab-welcome@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/dooboolab-welcome/-/dooboolab-welcome-1.1.1.tgz#ca2184f6e1f568865d707a6ce3bda7e003550f54"
-  integrity sha512-tQ/9NBCGnalHwKOBjDqTD4t4wQpDfSSbxQGctzkzaLHR3AhN0wCBkIs05JciVtvl/jfLZ+DgAndktAMk3Bu7Vw==
-
 emoji-regex@^7.0.1:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"
@@ -584,13 +579,6 @@ progress@^2.0.0:
 punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
-
-react-native-iap@4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/react-native-iap/-/react-native-iap-4.4.2.tgz#3460fcc3166a1218b8bfe6022c0a053acd767246"
-  integrity sha512-uia29mVN0eoZjXQ6xPz1QEOwXJaqxk9uzEhEz7PUzI6GctRvmptg95Hilqo05yLXIEvWciMQYn32VIMXZ+Zf8A==
-  dependencies:
-    dooboolab-welcome "^1.1.1"
 
 regexpp@^2.0.1:
   version "2.0.1"
