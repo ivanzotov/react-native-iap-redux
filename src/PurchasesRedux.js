@@ -77,7 +77,7 @@ export default class PurchasesRedux {
     } catch (err) {
       throw err;
     } finally {
-      await RNIap.endConnection();
+      await RNIap.endConnectionAndroid();
     }
   };
 
