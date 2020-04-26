@@ -25,9 +25,10 @@ export default ({ getStore, getConfig, getState, persist }) =>
       await RNIap.initConnection();
 
       try {
-        await RNIap.requestPurchase(this.sku, true);
+        const product = await RNIap.requestPurchase(this.sku);
         store.dispatch({ type: redux_action_type_buy, payload: this });
         persist();
+        await RNIap.finishTransaction(product, false);
       } catch (err) {
         throw err;
       } finally {
