@@ -1,7 +1,14 @@
 import * as RNIap from 'react-native-iap';
 
-export default ({ getStore, getConfig, getState, persist }) =>
-  class Purchase {
+export default ({ getStore, getConfig, getState, persist }) => {
+  RNIap.purchaseUpdatedListener(purchase => {
+    const receipt = purchase.transactionReceipt;
+    if (receipt) {
+      RNIap.finishTransaction(purchase, false);
+    }
+  });
+
+  return class Purchase {
     static deserialize = function(raw) {
       return new this(raw);
     };
@@ -25,10 +32,9 @@ export default ({ getStore, getConfig, getState, persist }) =>
       await RNIap.initConnection();
 
       try {
-        const product = await RNIap.requestPurchase(this.sku, false);
+        await RNIap.requestPurchase(this.sku, false);
         store.dispatch({ type: redux_action_type_buy, payload: this });
         persist();
-        await RNIap.finishTransaction(product, false);
       } catch (err) {
         throw err;
       } finally {
@@ -36,3 +42,4 @@ export default ({ getStore, getConfig, getState, persist }) =>
       }
     };
   };
+};
